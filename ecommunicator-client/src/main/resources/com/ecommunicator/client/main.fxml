@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ecommunicator.client.ui.MainController"
+            fx:id="rootPane"
+            styleClass="main-root">
+
+    <!-- ══════════════════════════════════════════════════════════════
+         TOP TOOLBAR
+         ══════════════════════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="top-toolbar" spacing="8" alignment="CENTER_LEFT">
+            <padding><Insets top="8" right="16" bottom="8" left="16"/></padding>
+
+            <!-- Session info -->
+            <Label fx:id="sessionIdLabel" styleClass="session-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Controls -->
+            <Button fx:id="micBtn"        text="🎙️ Unmute"      styleClass="btn-muted"   onAction="#onToggleMic"/>
+            <Button fx:id="cameraBtn"     text="📷 Start Video"  styleClass="btn-muted"   onAction="#onToggleCamera"/>
+            <Button fx:id="screenShareBtn" text="🖥️ Share Screen" styleClass="btn-default" onAction="#onToggleScreenShare"/>
+            <Separator orientation="VERTICAL"/>
+            <Button fx:id="handBtn"       text="✋ Raise Hand"   styleClass="btn-default" onAction="#onRaiseHand"/>
+            <Button fx:id="pollBtn"       text="📊 Poll"         styleClass="btn-default" onAction="#onCreatePoll"/>
+            <Button fx:id="recordBtn"     text="⏺️ Record"       styleClass="btn-default" onAction="#onToggleRecord"/>
+            <Separator orientation="VERTICAL"/>
+            <ToggleButton fx:id="showParticipantsBtn" text="👥 Participants" styleClass="btn-toggle"
+                          onAction="#onToggleParticipants"/>
+            <ToggleButton fx:id="showChatBtn" text="💬 Chat" styleClass="btn-toggle"
+                          onAction="#onToggleChat"/>
+            <Separator orientation="VERTICAL"/>
+            <Button fx:id="leaveBtn" text="🚪 Leave" styleClass="btn-danger" onAction="#onLeave"/>
+        </HBox>
+    </top>
+
+    <!-- ══════════════════════════════════════════════════════════════
+         CENTER — Main content area
+         ══════════════════════════════════════════════════════════════ -->
+    <center>
+        <SplitPane orientation="HORIZONTAL" dividerPositions="0.75">
+
+            <!-- Left: Whiteboard / Media -->
+            <VBox styleClass="content-area" SplitPane.resizableWithParent="true">
+
+                <!-- Sub-tabs: Whiteboard | Screen Share | Video -->
+                <TabPane fx:id="mainTabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+                    <!-- Whiteboard tab -->
+                    <Tab text="📋 Whiteboard">
+                        <VBox spacing="0">
+                            <!-- Page tabs -->
+                            <HBox fx:id="pageTabBar" styleClass="page-tab-bar" spacing="4" alignment="CENTER_LEFT">
+                                <padding><Insets top="4" right="8" bottom="4" left="8"/></padding>
+                                <Button text="＋ Page" styleClass="btn-add-page" onAction="#onAddPage"/>
+                            </HBox>
+
+                            <!-- Drawing area -->
+                            <StackPane fx:id="whiteboardArea" styleClass="whiteboard-area" VBox.vgrow="ALWAYS">
+                                <Pane fx:id="textOverlayPane" mouseTransparent="true"
+                                      style="-fx-background-color: transparent;"/>
+                            </StackPane>
+
+                            <!-- Drawing tools palette -->
+                            <HBox fx:id="toolPalette" styleClass="tool-palette" spacing="6" alignment="CENTER_LEFT">
+                                <padding><Insets top="6" right="12" bottom="6" left="12"/></padding>
+                                <Button text="✏️ Pen"     styleClass="tool-btn" onAction="#onSelectPen"/>
+                                <Button text="◻ Rect"    styleClass="tool-btn" onAction="#onSelectRect"/>
+                                <Button text="⬭ Ellipse" styleClass="tool-btn" onAction="#onSelectEllipse"/>
+                                <Button text="╱ Line"    styleClass="tool-btn" onAction="#onSelectLine"/>
+                                <Button text="→ Arrow"   styleClass="tool-btn" onAction="#onSelectArrow"/>
+                                <Button text="T Text"    styleClass="tool-btn" onAction="#onSelectText"/>
+                                <Button text="⌫ Erase"   styleClass="tool-btn" onAction="#onSelectEraser"/>
+                                <Separator orientation="VERTICAL"/>
+                                <Button text="↩ Undo"    styleClass="tool-btn" onAction="#onUndoClicked"/>
+                                <Button text="↪ Redo"    styleClass="tool-btn" onAction="#onRedoClicked"/>
+                                <Button text="🗑 Clear"   styleClass="tool-btn-danger" onAction="#onClearPage"/>
+                                <Separator orientation="VERTICAL"/>
+                                <ColorPicker fx:id="colorPicker" styleClass="color-picker"/>
+                                <Label text="Size:"/>
+                                <Slider fx:id="brushSizeSlider" prefWidth="80"/>
+                            </HBox>
+                        </VBox>
+                    </Tab>
+
+                    <!-- Screen Share Viewer tab -->
+                    <Tab text="🖥️ Screen">
+                        <StackPane fx:id="mediaArea" styleClass="media-area">
+                            <ImageView fx:id="screenShareViewer"
+                                       preserveRatio="true"
+                                       fitWidth="1024" fitHeight="768"/>
+                        </StackPane>
+                    </Tab>
+
+                    <!-- Video Grid tab -->
+                    <Tab text="🎥 Video">
+                        <ScrollPane fitToWidth="true" fitToHeight="true">
+                            <GridPane fx:id="videoGrid" styleClass="video-grid"
+                                      hgap="8" vgap="8">
+                                <padding><Insets topRightBottomLeft="16"/></padding>
+                            </GridPane>
+                        </ScrollPane>
+                    </Tab>
+
+                </TabPane>
+            </VBox>
+
+            <!-- Right: Participants + Chat -->
+            <VBox styleClass="side-panel" minWidth="260" maxWidth="340">
+
+                <!-- Participants -->
+                <VBox fx:id="participantsPanel" VBox.vgrow="SOMETIMES" styleClass="panel-section">
+                    <Label text="👥 Participants" styleClass="panel-title"/>
+                    <ListView fx:id="participantsListView" VBox.vgrow="ALWAYS" styleClass="participants-list"/>
+                </VBox>
+
+                <!-- Chat -->
+                <VBox fx:id="chatPanel" VBox.vgrow="ALWAYS" styleClass="panel-section">
+                    <Label text="💬 Chat" styleClass="panel-title"/>
+                    <ListView fx:id="chatListView" VBox.vgrow="ALWAYS" styleClass="chat-list"/>
+                    <HBox spacing="6" alignment="CENTER">
+                        <padding><Insets top="6"/></padding>
+                        <TextField fx:id="chatInput" HBox.hgrow="ALWAYS"
+                                   promptText="Type a message…"
+                                   styleClass="chat-input"
+                                   onKeyPressed="#onChatInputKeyPressed"/>
+                        <Button fx:id="chatSendBtn" text="Send"
+                                styleClass="btn-primary" onAction="#onChatSend"/>
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </SplitPane>
+    </center>
+
+</BorderPane>

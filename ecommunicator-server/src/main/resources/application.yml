@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ecommunicator-server
+
+  # WebSocket configuration
+  websocket:
+    message-size-limit: 10485760        # 10 MB max per STOMP message (for image paste, etc.)
+    send-buffer-size-limit: 10485760
+    send-time-limit: 20000              # 20s
+
+  # Jackson
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
+
+logging:
+  level:
+    com.ecommunicator: DEBUG
+    org.springframework.web.socket: INFO
+    org.springframework.messaging: INFO
+
+ecommunicator:
+  session:
+    max-participants: 100               # Max participants per session
+    idle-timeout-minutes: 30            # Clean up sessions idle > 30 min
+  media:
+    max-frame-bytes: 524288             # 512 KB max per binary media frame
+    audio-sample-rate: 16000
+    audio-channels: 1
+    audio-bit-depth: 16

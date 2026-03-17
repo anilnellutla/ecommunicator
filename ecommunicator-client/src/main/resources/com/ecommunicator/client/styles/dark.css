@@ -1,0 +1,352 @@
+/*
+ * eCommunicator — Dark Theme
+ * Inspired by Zoom/Teams dark mode UX patterns.
+ */
+
+/* ── Root ────────────────────────────────────────────────────────────────── */
+.root {
+    -fx-background-color: #1e1e2e;
+    -fx-font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #cdd6f4;
+}
+
+/* ── Login ───────────────────────────────────────────────────────────────── */
+.login-root {
+    -fx-background-color: #1e1e2e;
+    -fx-padding: 40;
+}
+
+.login-header {
+    -fx-padding: 0 0 30 0;
+}
+
+.app-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #cba6f7;
+}
+
+.app-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c7086;
+}
+
+.login-card {
+    -fx-background-color: #313244;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0, 0, 4);
+}
+
+.footer-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #45475a;
+    -fx-padding: 16 0 0 0;
+}
+
+/* ── Fields ──────────────────────────────────────────────────────────────── */
+.field-label {
+    -fx-text-fill: #a6adc8;
+    -fx-font-size: 12px;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #1e1e2e;
+    -fx-background-radius: 6;
+    -fx-border-color: #45475a;
+    -fx-border-radius: 6;
+    -fx-text-fill: #cdd6f4;
+    -fx-prompt-text-fill: #585b70;
+    -fx-padding: 8 12;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #cba6f7;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: #cba6f7;
+    -fx-text-fill: #1e1e2e;
+    -fx-background-radius: 6;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover    { -fx-background-color: #b4befe; }
+.btn-primary:pressed  { -fx-background-color: #a6adc8; }
+
+.btn-secondary {
+    -fx-background-color: #45475a;
+    -fx-text-fill: #cdd6f4;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover  { -fx-background-color: #585b70; }
+
+.btn-default {
+    -fx-background-color: #313244;
+    -fx-text-fill: #cdd6f4;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+}
+
+.btn-default:hover    { -fx-background-color: #45475a; }
+
+.btn-muted {
+    -fx-background-color: #f38ba8;
+    -fx-text-fill: #1e1e2e;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-active {
+    -fx-background-color: #a6e3a1;
+    -fx-text-fill: #1e1e2e;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+}
+
+.btn-danger {
+    -fx-background-color: #f38ba8;
+    -fx-text-fill: #1e1e2e;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover     { -fx-background-color: #eba0ac; }
+
+.btn-toggle {
+    -fx-background-color: #313244;
+    -fx-text-fill: #cdd6f4;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+}
+
+.btn-toggle:selected {
+    -fx-background-color: #cba6f7;
+    -fx-text-fill: #1e1e2e;
+}
+
+.btn-recording { -fx-background-color: #f38ba8; }
+
+.btn-add-page {
+    -fx-background-color: transparent;
+    -fx-text-fill: #89b4fa;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+/* ── Status / progress ───────────────────────────────────────────────────── */
+.status-label {
+    -fx-text-fill: #a6adc8;
+    -fx-font-size: 12px;
+}
+
+/* ── Main layout ─────────────────────────────────────────────────────────── */
+.main-root {
+    -fx-background-color: #1e1e2e;
+}
+
+.top-toolbar {
+    -fx-background-color: #181825;
+    -fx-border-color: #313244;
+    -fx-border-width: 0 0 1 0;
+}
+
+.session-label {
+    -fx-text-fill: #89b4fa;
+    -fx-font-weight: bold;
+}
+
+/* ── Whiteboard ──────────────────────────────────────────────────────────── */
+.whiteboard-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #313244;
+    -fx-border-width: 0;
+}
+
+.page-tab-bar {
+    -fx-background-color: #181825;
+    -fx-border-color: #313244;
+    -fx-border-width: 0 0 1 0;
+}
+
+.page-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a6adc8;
+    -fx-background-radius: 4 4 0 0;
+    -fx-padding: 4 12;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+}
+
+.page-tab:hover    { -fx-background-color: #313244; }
+
+.page-tab-active {
+    -fx-background-color: #313244;
+    -fx-text-fill: #cba6f7;
+    -fx-font-weight: bold;
+}
+
+.tool-palette {
+    -fx-background-color: #181825;
+    -fx-border-color: #313244;
+    -fx-border-width: 1 0 0 0;
+}
+
+.tool-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cdd6f4;
+    -fx-padding: 4 10;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+    -fx-font-size: 12px;
+}
+
+.tool-btn:hover { -fx-background-color: #313244; }
+
+.tool-btn-danger {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f38ba8;
+    -fx-padding: 4 10;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+    -fx-font-size: 12px;
+}
+
+.tool-btn-danger:hover { -fx-background-color: #3e2030; }
+
+/* ── Side panel ──────────────────────────────────────────────────────────── */
+.side-panel {
+    -fx-background-color: #181825;
+    -fx-border-color: #313244;
+    -fx-border-width: 0 0 0 1;
+}
+
+.panel-section {
+    -fx-padding: 12;
+    -fx-spacing: 8;
+}
+
+.panel-title {
+    -fx-text-fill: #89b4fa;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* ── Lists ───────────────────────────────────────────────────────────────── */
+.list-view, .participants-list, .chat-list {
+    -fx-background-color: #1e1e2e;
+    -fx-border-color: #313244;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cdd6f4;
+    -fx-padding: 6 8;
+}
+
+.list-cell:selected {
+    -fx-background-color: #313244;
+}
+
+.list-cell:odd {
+    -fx-background-color: #252535;
+}
+
+/* ── Chat input ──────────────────────────────────────────────────────────── */
+.chat-input {
+    -fx-background-color: #313244;
+    -fx-border-color: #45475a;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #cdd6f4;
+    -fx-prompt-text-fill: #585b70;
+    -fx-padding: 6 10;
+}
+
+.chat-input:focused { -fx-border-color: #cba6f7; }
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.tab-pane {
+    -fx-background-color: #1e1e2e;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: #181825;
+}
+
+.tab {
+    -fx-background-color: #181825;
+    -fx-text-fill: #a6adc8;
+}
+
+.tab:selected {
+    -fx-background-color: #313244;
+    -fx-text-fill: #cba6f7;
+}
+
+.tab-label { -fx-text-fill: inherit; }
+
+/* ── SplitPane ───────────────────────────────────────────────────────────── */
+.split-pane {
+    -fx-background-color: #1e1e2e;
+    -fx-padding: 0;
+}
+
+.split-pane-divider {
+    -fx-background-color: #313244;
+    -fx-padding: 0 1;
+}
+
+/* ── Video grid ──────────────────────────────────────────────────────────── */
+.video-grid {
+    -fx-background-color: #11111b;
+}
+
+/* ── Media area ──────────────────────────────────────────────────────────── */
+.media-area {
+    -fx-background-color: #11111b;
+}
+
+/* ── Color picker ────────────────────────────────────────────────────────── */
+.color-picker {
+    -fx-background-color: #313244;
+    -fx-border-color: #45475a;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+}
+
+/* ── Separator ───────────────────────────────────────────────────────────── */
+.separator .line {
+    -fx-border-color: #45475a;
+}
+
+/* ── Slider ──────────────────────────────────────────────────────────────── */
+.slider .track           { -fx-background-color: #45475a; }
+.slider .thumb           { -fx-background-color: #cba6f7; }
+.slider .thumb:hover     { -fx-background-color: #b4befe; }
+
+/* ── Alert / Dialog ──────────────────────────────────────────────────────── */
+.dialog-root {
+    -fx-background-color: #313244;
+}
+
+.dialog-pane {
+    -fx-background-color: #313244;
+}
+
+.dialog-pane .label { -fx-text-fill: #cdd6f4; }
