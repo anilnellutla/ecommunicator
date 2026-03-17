@@ -38,6 +38,9 @@ public class TextTool implements Tool {
         clickX = e.getX();
         clickY = e.getY();
 
+        // Allow mouse events on the overlay so the TextField can receive input
+        overlay.setMouseTransparent(false);
+
         // Place a TextField at the click position
         TextField tf = new TextField();
         tf.setLayoutX(clickX);
@@ -57,6 +60,8 @@ public class TextTool implements Tool {
     private void commitText(TextField tf, GraphicsContext gc) {
         String text = tf.getText().trim();
         overlay.getChildren().remove(tf);
+        // Restore transparency so other tools can receive canvas events
+        overlay.setMouseTransparent(true);
         if (text.isEmpty()) return;
 
         gc.setFill(color);
@@ -74,7 +79,7 @@ public class TextTool implements Tool {
     @Override public void onMouseDragged(MouseEvent e, GraphicsContext gc) {}
     @Override public void onMouseReleased(MouseEvent e, GraphicsContext gc) {}
     @Override public String getCompletedOpJson() { return completedOp; }
-    @Override public void reset() { completedOp = null; }
+    @Override public void reset() { completedOp = null; overlay.setMouseTransparent(true); }
     @Override public String getName() { return "Text"; }
 
     public void setColor(Color c)       { this.color = c; }

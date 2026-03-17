@@ -62,7 +62,7 @@
 
                             <!-- Drawing area -->
                             <StackPane fx:id="whiteboardArea" styleClass="whiteboard-area" VBox.vgrow="ALWAYS">
-                                <Pane fx:id="textOverlayPane" mouseTransparent="false"
+                                <Pane fx:id="textOverlayPane" mouseTransparent="true"
                                       style="-fx-background-color: transparent;"/>
                             </StackPane>
 

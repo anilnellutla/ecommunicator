@@ -27,6 +27,10 @@ import java.util.function.Consumer;
  */
 public class WhiteboardCanvas extends Canvas {
 
+    @Override public boolean isResizable() { return true; }
+    @Override public double prefWidth(double height)  { return getWidth(); }
+    @Override public double prefHeight(double width)  { return getHeight(); }
+
     private static final Logger log = LoggerFactory.getLogger(WhiteboardCanvas.class);
 
     private final GraphicsContext gc;

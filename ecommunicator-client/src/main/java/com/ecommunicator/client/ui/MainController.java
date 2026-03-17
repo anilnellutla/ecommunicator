@@ -127,12 +127,14 @@ public class MainController {
 
     private void initWhiteboard() {
         drawingModel = new DrawingModel();
-        double w = whiteboardArea.getPrefWidth() > 0 ? whiteboardArea.getPrefWidth() : 1024;
-        double h = whiteboardArea.getPrefHeight() > 0 ? whiteboardArea.getPrefHeight() : 700;
 
-        whiteboardCanvas = new WhiteboardCanvas(w, h, drawingModel, textOverlayPane);
+        whiteboardCanvas = new WhiteboardCanvas(1280, 800, drawingModel, textOverlayPane);
         whiteboardCanvas.setOnLocalOpComplete(this::onLocalWhiteboardOp);
         whiteboardArea.getChildren().add(0, whiteboardCanvas);
+
+        // Bind canvas size to parent so it fills and resizes with the layout
+        whiteboardCanvas.widthProperty().bind(whiteboardArea.widthProperty());
+        whiteboardCanvas.heightProperty().bind(whiteboardArea.heightProperty());
 
         // Tool palette buttons
         setupToolPalette();
