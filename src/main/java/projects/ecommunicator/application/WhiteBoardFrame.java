@@ -79,7 +79,7 @@ public class WhiteBoardFrame extends JFrame {
 	public WhiteBoardFrame() {
 
 		try {
-			UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (InstantiationException ex) {
