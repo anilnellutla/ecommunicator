@@ -3,6 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -67,19 +68,39 @@
                             </StackPane>
 
                             <!-- Drawing tools palette -->
-                            <HBox fx:id="toolPalette" styleClass="tool-palette" spacing="6" alignment="CENTER_LEFT">
+                            <HBox fx:id="toolPalette" styleClass="tool-palette" spacing="4" alignment="CENTER_LEFT">
                                 <padding><Insets top="6" right="12" bottom="6" left="12"/></padding>
-                                <Button text="✏️ Pen"     styleClass="tool-btn" onAction="#onSelectPen"/>
-                                <Button text="◻ Rect"    styleClass="tool-btn" onAction="#onSelectRect"/>
-                                <Button text="⬭ Ellipse" styleClass="tool-btn" onAction="#onSelectEllipse"/>
-                                <Button text="╱ Line"    styleClass="tool-btn" onAction="#onSelectLine"/>
-                                <Button text="→ Arrow"   styleClass="tool-btn" onAction="#onSelectArrow"/>
-                                <Button text="T Text"    styleClass="tool-btn" onAction="#onSelectText"/>
-                                <Button text="⌫ Erase"   styleClass="tool-btn" onAction="#onSelectEraser"/>
+                                <Button fx:id="penBtn"     styleClass="tool-btn" onAction="#onSelectPen">
+                                    <graphic><FontIcon iconLiteral="fas-pen"        iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Pen"/></tooltip></Button>
+                                <Button fx:id="rectBtn"    styleClass="tool-btn" onAction="#onSelectRect">
+                                    <graphic><FontIcon iconLiteral="fas-square"     iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Rectangle"/></tooltip></Button>
+                                <Button fx:id="ellipseBtn" styleClass="tool-btn" onAction="#onSelectEllipse">
+                                    <graphic><FontIcon iconLiteral="fas-circle"     iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Ellipse"/></tooltip></Button>
+                                <Button fx:id="lineBtn"    styleClass="tool-btn" onAction="#onSelectLine">
+                                    <graphic><FontIcon iconLiteral="fas-minus"      iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Line"/></tooltip></Button>
+                                <Button fx:id="arrowBtn"   styleClass="tool-btn" onAction="#onSelectArrow">
+                                    <graphic><FontIcon iconLiteral="fas-arrow-right" iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Arrow"/></tooltip></Button>
+                                <Button fx:id="textBtn"    styleClass="tool-btn" onAction="#onSelectText">
+                                    <graphic><FontIcon iconLiteral="fas-font"       iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Text"/></tooltip></Button>
+                                <Button fx:id="eraserBtn"  styleClass="tool-btn" onAction="#onSelectEraser">
+                                    <graphic><FontIcon iconLiteral="fas-eraser"     iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Eraser"/></tooltip></Button>
                                 <Separator orientation="VERTICAL"/>
-                                <Button text="↩ Undo"    styleClass="tool-btn" onAction="#onUndoClicked"/>
-                                <Button text="↪ Redo"    styleClass="tool-btn" onAction="#onRedoClicked"/>
-                                <Button text="🗑 Clear"   styleClass="tool-btn-danger" onAction="#onClearPage"/>
+                                <Button styleClass="tool-btn" onAction="#onUndoClicked">
+                                    <graphic><FontIcon iconLiteral="fas-undo"       iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Undo"/></tooltip></Button>
+                                <Button styleClass="tool-btn" onAction="#onRedoClicked">
+                                    <graphic><FontIcon iconLiteral="fas-redo"       iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Redo"/></tooltip></Button>
+                                <Button styleClass="tool-btn-danger" onAction="#onClearPage">
+                                    <graphic><FontIcon iconLiteral="fas-trash-alt"  iconSize="15"/></graphic>
+                                    <tooltip><Tooltip text="Clear page"/></tooltip></Button>
                                 <Separator orientation="VERTICAL"/>
                                 <ColorPicker fx:id="colorPicker" styleClass="color-picker"/>
                                 <Label text="Size:"/>

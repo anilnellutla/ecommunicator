@@ -8,6 +8,8 @@ module com.ecommunicator.client {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires org.slf4j;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome5;
 
     requires java.desktop;   // For javax.sound.sampled and java.awt.Robot
 
