@@ -63,6 +63,15 @@ public class MainController {
     @FXML private ColorPicker colorPicker;
     @FXML private Slider     brushSizeSlider;
 
+    // Tool buttons (for active-state highlighting)
+    @FXML private Button penBtn;
+    @FXML private Button rectBtn;
+    @FXML private Button ellipseBtn;
+    @FXML private Button lineBtn;
+    @FXML private Button arrowBtn;
+    @FXML private Button textBtn;
+    @FXML private Button eraserBtn;
+
     // Screen share viewer
     @FXML private ImageView  screenShareViewer;
     @FXML private StackPane  mediaArea;
@@ -136,7 +145,7 @@ public class MainController {
         whiteboardCanvas.widthProperty().bind(whiteboardArea.widthProperty());
         whiteboardCanvas.heightProperty().bind(whiteboardArea.heightProperty());
 
-        // Tool palette buttons
+        // Tool palette buttons + default tool
         setupToolPalette();
 
         // First page tab
@@ -155,15 +164,27 @@ public class MainController {
             brushSizeSlider.setValue(2);
             brushSizeSlider.valueProperty().addListener((obs, ov, nv) -> updateToolSize(nv.doubleValue()));
         }
+
+        // Activate Pen tool by default
+        javafx.application.Platform.runLater(this::onSelectPen);
     }
 
-    @FXML private void onSelectPen()    { whiteboardCanvas.setActiveTool(new PenTool(colorPicker.getValue(), getBrushSize())); }
-    @FXML private void onSelectEraser() { whiteboardCanvas.setActiveTool(new EraserTool()); }
-    @FXML private void onSelectRect()   { whiteboardCanvas.setActiveTool(new ShapeTool(ShapeTool.ShapeType.RECT, colorPicker.getValue(), null, getBrushSize())); }
-    @FXML private void onSelectEllipse(){ whiteboardCanvas.setActiveTool(new ShapeTool(ShapeTool.ShapeType.ELLIPSE, colorPicker.getValue(), null, getBrushSize())); }
-    @FXML private void onSelectLine()   { whiteboardCanvas.setActiveTool(new ShapeTool(ShapeTool.ShapeType.LINE, colorPicker.getValue(), null, getBrushSize())); }
-    @FXML private void onSelectArrow()  { whiteboardCanvas.setActiveTool(new ShapeTool(ShapeTool.ShapeType.ARROW, colorPicker.getValue(), null, getBrushSize())); }
-    @FXML private void onSelectText()   { whiteboardCanvas.setActiveTool(new TextTool(textOverlayPane)); }
+    @FXML private void onSelectPen()    { setActiveTool(penBtn,     new PenTool(colorPicker.getValue(), getBrushSize())); }
+    @FXML private void onSelectEraser() { setActiveTool(eraserBtn,  new EraserTool()); }
+    @FXML private void onSelectRect()   { setActiveTool(rectBtn,    new ShapeTool(ShapeTool.ShapeType.RECT,    colorPicker.getValue(), null, getBrushSize())); }
+    @FXML private void onSelectEllipse(){ setActiveTool(ellipseBtn, new ShapeTool(ShapeTool.ShapeType.ELLIPSE, colorPicker.getValue(), null, getBrushSize())); }
+    @FXML private void onSelectLine()   { setActiveTool(lineBtn,    new ShapeTool(ShapeTool.ShapeType.LINE,    colorPicker.getValue(), null, getBrushSize())); }
+    @FXML private void onSelectArrow()  { setActiveTool(arrowBtn,   new ShapeTool(ShapeTool.ShapeType.ARROW,   colorPicker.getValue(), null, getBrushSize())); }
+    @FXML private void onSelectText()   { setActiveTool(textBtn,    new TextTool(textOverlayPane)); }
+
+    private void setActiveTool(Button activeBtn, com.ecommunicator.client.whiteboard.tool.Tool tool) {
+        // Clear active style from all tool buttons
+        for (Button b : new Button[]{penBtn, rectBtn, ellipseBtn, lineBtn, arrowBtn, textBtn, eraserBtn}) {
+            if (b != null) b.getStyleClass().remove("tool-btn-active");
+        }
+        if (activeBtn != null) activeBtn.getStyleClass().add("tool-btn-active");
+        whiteboardCanvas.setActiveTool(tool);
+    }
 
     @FXML private void onUndoClicked() {
         drawingModel.undoOnActivePage().ifPresent(op -> {

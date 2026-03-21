@@ -206,24 +206,31 @@
 
 .tool-btn {
     -fx-background-color: transparent;
-    -fx-text-fill: #cdd6f4;
-    -fx-padding: 4 10;
+    -fx-padding: 6 9;
     -fx-cursor: hand;
-    -fx-background-radius: 4;
-    -fx-font-size: 12px;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
 }
-
+.tool-btn .ikonli-font-icon { -fx-icon-color: #cdd6f4; }
 .tool-btn:hover { -fx-background-color: #313244; }
+.tool-btn:hover .ikonli-font-icon { -fx-icon-color: #cba6f7; }
+
+/* Active (selected) tool */
+.tool-btn-active {
+    -fx-background-color: #313244;
+    -fx-border-color: #89b4fa;
+}
+.tool-btn-active .ikonli-font-icon { -fx-icon-color: #89b4fa; }
 
 .tool-btn-danger {
     -fx-background-color: transparent;
-    -fx-text-fill: #f38ba8;
-    -fx-padding: 4 10;
+    -fx-padding: 6 9;
     -fx-cursor: hand;
-    -fx-background-radius: 4;
-    -fx-font-size: 12px;
+    -fx-background-radius: 6;
 }
-
+.tool-btn-danger .ikonli-font-icon { -fx-icon-color: #f38ba8; }
 .tool-btn-danger:hover { -fx-background-color: #3e2030; }
 
 /* ── Side panel ──────────────────────────────────────────────────────────── */
